@@ -22,7 +22,7 @@ func GetTaskList(c *gin.Context) {
 AddTask 增加新的任务
 */
 func AddTask(c *gin.Context) {
-	title, ok := c.ShouldBindJSON("title")
+	title, ok := c.GetPostForm("title")
 	if !ok {
 		model.Error(c, "请填写title参数")
 		return
@@ -77,7 +77,7 @@ func EditTask(c *gin.Context) {
 	// 从请求体获取数据
 	title := c.PostForm("title")
 	if len(title) == 0 {
-		model.Error(c, "Title不为空")
+		model.Error(c, "Title为空")
 		return
 	}
 
@@ -87,10 +87,12 @@ func EditTask(c *gin.Context) {
 		done = false
 	}
 
+	log.Println("新的Done为: ", done)
+
 	// 找到并且修改数据
-	database.DB.Model(&model.Task{ID: num}).Updates(model.Task{
-		Done:  done,
-		Title: title,
+	database.DB.Model(&model.Task{ID: num}).Updates(map[string]any{
+		"done":  done,
+		"title": title,
 	})
 
 	model.OkWithMsg(c, "success")

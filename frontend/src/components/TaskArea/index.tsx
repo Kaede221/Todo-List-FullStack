@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback, type FC } from "react";
 import { taskGetAllService } from "../../api/task";
 
+import Task from "../Task";
+
 import "./index.scss";
 
 interface IProps {
@@ -27,7 +29,13 @@ const TaskArea: FC<IProps> = ({ trigger }) => {
   return (
     <div className="task-area">
       {taskList.map((i) => (
-        <div key={i.ID || i.title}>{i.title}</div>
+        <Task
+          key={i.ID}
+          title={i.title}
+          done={i.done}
+          id={i.ID}
+          onSuccess={fetchData}
+        />
       ))}
     </div>
   );

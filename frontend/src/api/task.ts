@@ -39,4 +39,9 @@ export const taskUpdateService = (data: {
   id: number;
   title: string;
   done: boolean;
-}) => request.put("/tasks", data);
+}) =>
+  request.put("/tasks?id=" + data.id, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });

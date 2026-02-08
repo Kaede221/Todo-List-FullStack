@@ -1,5 +1,5 @@
 interface ITask {
-  ID: string;
+  ID: number;
   title: string;
   done: boolean;
 }
