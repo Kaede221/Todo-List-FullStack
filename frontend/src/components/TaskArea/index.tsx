@@ -28,15 +28,19 @@ const TaskArea: FC<IProps> = ({ trigger }) => {
 
   return (
     <div className="task-area">
-      {taskList.map((i) => (
-        <Task
-          key={i.ID}
-          title={i.title}
-          done={i.done}
-          id={i.ID}
-          onSuccess={fetchData}
-        />
-      ))}
+      {taskList.length !== 0 ? (
+        taskList.map((i) => (
+          <Task
+            key={i.ID}
+            title={i.title}
+            done={i.done}
+            id={i.ID}
+            onSuccess={fetchData}
+          />
+        ))
+      ) : (
+        <>还没有创建任务哦</>
+      )}
     </div>
   );
 };

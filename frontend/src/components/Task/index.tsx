@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 import "./index.scss";
-import { taskUpdateService } from "../../api/task";
+import { taskDeleteService, taskUpdateService } from "../../api/task";
 
 interface IProps {
   title: string;
@@ -16,11 +16,18 @@ const Task: FC<IProps> = ({ title, done, id, onSuccess }) => {
     onSuccess();
   };
 
+  const handleDelete = async () => {
+    await taskDeleteService(id);
+    onSuccess();
+  };
+
   return (
     <div className="task-container" key={id}>
       <input type="checkbox" checked={done} onClick={handleCheck} />
       {title}
-      <div className="delete-btn">删除</div>
+      <div className="delete-btn" onClick={handleDelete}>
+        删除
+      </div>
     </div>
   );
 };

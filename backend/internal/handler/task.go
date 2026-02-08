@@ -14,7 +14,7 @@ GetTaskList 获取任务列表
 */
 func GetTaskList(c *gin.Context) {
 	var tasks []model.Task
-	database.DB.Find(&tasks)
+	database.DB.Order("id").Find(&tasks)
 	model.Ok(c, tasks, "success")
 }
 
