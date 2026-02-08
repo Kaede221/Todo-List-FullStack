@@ -22,7 +22,7 @@ func GetTaskList(c *gin.Context) {
 AddTask 增加新的任务
 */
 func AddTask(c *gin.Context) {
-	title, ok := c.GetPostForm("title")
+	title, ok := c.ShouldBindJSON("title")
 	if !ok {
 		model.Error(c, "请填写title参数")
 		return

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    /* 基础编译选项 */
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+    /* 模块解析 */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* 关键配置：强制类型导入 */
+    "verbatimModuleSyntax": true,
+
+    /* 严格类型检查 (解决 Unexpected any) */
+    "strict": false,
+    "noImplicitAny": true, // 禁止隐式 any
+    "strictNullChecks": true,
+
+    /* 互操作性 */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    "allowUmdGlobalAccess": true,
+    "module": "esnext",
+    "target": "esnext"
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules"]
+}

@@ -4,6 +4,7 @@ import (
 	"backend/internal/database"
 	"backend/internal/handler"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +14,15 @@ func main() {
 
 	// 创建路由引擎
 	r := gin.Default()
+
+	r.Use(cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true, // 允许 Cookie
+		MaxAge:           12 * 3600,
+	}))
 
 	// 获取所有任务
 	r.GET("/tasks", handler.GetTaskList)
