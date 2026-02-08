@@ -14,9 +14,14 @@ func main() {
 	// 创建路由引擎
 	r := gin.Default()
 
-	// 注册各种路由
+	// 获取所有任务
 	r.GET("/tasks", handler.GetTaskList)
+	// 增加新的任务
 	r.POST("/tasks", handler.AddTask)
+	// 删除任务
+	r.DELETE("/tasks", handler.DeleteTask)
+	// 更新任务
+	r.PUT("/tasks", handler.EditTask)
 
 	// 启动服务
 	err := r.Run("localhost:8080")

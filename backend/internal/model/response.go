@@ -20,6 +20,10 @@ func Ok(c *gin.Context, data any, msg string) {
 	response(c, 0, data, msg)
 }
 
+func OkWithMsg(c *gin.Context, msg string) {
+	response(c, 0, []int{}, msg)
+}
+
 func Error(c *gin.Context, msg string) {
 	response(c, 500, nil, msg)
 }
